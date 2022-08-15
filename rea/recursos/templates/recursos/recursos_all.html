@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Recursos Carregados {%endblock%}
+
+{%block content%}
+
+<div class="data-table-area mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="sparkline13-list">
+                    <div class="sparkline13-hd">
+                        <div class="main-sparkline13-hd">
+                            <h4>Lista de Recursos Carregados</h4>
+                            <div class="add-product">
+                                <a href="{% url 'recursos.form'%}">Adicionar Recursos</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sparkline13-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+
+                            <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th data-field="id">Titulo</th>
+                                        <th data-field="subtitulo" data-editable="true">Subtitulo</th>
+                                        <th data-field="Autor" data-editable="true">Autor</th>
+                                        <th data-field="Co-Autor(es)" data-editable="true">Co-Autor(es)</th>
+                                        <th data-field="Organizacao" data-editable="true">Organização</th>
+                                        <th data-field="Licenca" data-editable="true">Licença</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for recurso in recursos %}
+                                    <tr>
+                    
+                                        <td>{{ recurso.titulo}}</td>
+                                        
+                                        <td>{{recurso.sub_titulo}}</td>
+                                        <td>{{recurso.fonte.autor}}</td>
+                                        <td>{{recurso.fonte.co_autor}}</td>
+                                        <td>{{recurso.fonte.organizacao}}</td>
+                                        <td><img src="{{recurso.licenca.imagem.url}}" alt="" /></td>
+                                        
+                                    </tr>
+                                    {%endfor%}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

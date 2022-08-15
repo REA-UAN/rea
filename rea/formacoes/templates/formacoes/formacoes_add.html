@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %} Carregar Recursos {%endblock%}
+
+{%block content%}
+<!-- Single pro tab review Start-->
+<form method="POST" action="{% url 'formacoes.add.store' %}" enctype = "multipart/form-data">
+    {% csrf_token %}
+    <div class="single-pro-review-area mt-t-30 mg-b-15">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="product-payment-inner-st">
+                        <ul id="myTabedu1" class="tab-review-design">
+                            <li class="active"><a href="#description">Adicionar Recurso Educacional Aberto à Formação - {{formacao.nome}}</a></li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content custom-product-edit">
+                            <div class="product-tab-list tab-pane fade active in" id="description">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="review-content-section">
+                                            <div id="dropzone1" class="pro-ad addcoursepro">
+                                                <div class="dropzone dropzone-custom needsclick addcourse" id="demo1-upload">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group">
+                                                                <input name="titulo" type="text" class="form-control" placeholder="Titulo" maxlength="255" required autocomplete="off">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="subtitulo" type="text" class="form-control" placeholder="Subtitulo" maxlength="255" required autocomplete="off">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <textarea name="descricao" placeholder = "Resumo" rows="4" autocomplete="off"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="palavras_chave" type="text" class="form-control" placeholder="Palavras Chave: Resumo; Apoio; REA" required autocomplete="off">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="link" type="text" class="form-control" placeholder="Link" autocomplete="off">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <select name="area" class="form-control" autocomplete="off">
+                                                                    
+                                                                    <option value="{{areas.id}}">{{areas.descricao}}</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+
+                                                            
+                                                            <div class="form-group">
+                                                                <input name="file" type="file" class="form-control" placeholder="Ficheiro" accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.odt,.ods,.odp,.mp3, .FLAC, .ogg,.mkv, .webM, .mp4,.HTML,.epub, .MathML, .PNG, .SVG" required autocomplete="off">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                            <div class="form-group res-mg-t-15">
+                                                                <input name="organizacao" type="text" class="form-control"  placeholder="Organização; Instituição" value="{{formacao.nome}}" maxlength="255" readonly>
+                                                            </div>
+                                                        
+                                                            <div class="form-group">
+                                                                <input name="autor" type="text" class="form-control" placeholder="Autor" maxlength="255" value="{{formacao.formador.username}}" required>
+                                                            </div>
+                                                        
+                                                            <div class="form-group">
+                                                                <input name="coautor" type="text" class="form-control" placeholder="Co-Autor(es)" autocomplete="off">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input name="criacao" type="hidden" class="form-control" placeholder="Data Criação" value="{% now "d/m/Y" %}" autocomplete="off">
+                                                                <input name="formacao_id" type="hidden" class="form-control" value="{{formacao.id}}" autocomplete="off">
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <select name="lingua" class="form-control" autocomplete="off">
+                                                                    {% for lingua in linguas %}
+                                                                        <option value="{{lingua.id}}">{{lingua.nome}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <select name="licenca" class="form-control" autocomplete="off">
+                                                                    {% for licenca in licencas %}
+                                                                        <option value="{{licenca.id}}">{{licenca.nome}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                            </div>
+
+                                                            
+                                                            <div class="form-group">
+                                                                <select name="formato" class="form-control" autocomplete="off">
+                                                                    {% for formato in formatos %}
+                                                                        <option value="{{formato.id}}">{{formato.nome}}</option>
+                                                                    {%endfor%}
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Material de Apoio</label>
+                                                                <select name="apoio" class="form-control" autocomplete="off">
+                                                                    
+                                                                    <option value="0">Não</option>
+                                                                    <option value="1">Sim</option>
+                                                                    
+                                                                </select>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="payment-adress">
+                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Gravar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{%endblock%}

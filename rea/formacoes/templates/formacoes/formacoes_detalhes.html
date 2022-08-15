@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %} Carregar Formações {%endblock%}
+
+{%block content%}
+<!-- Single pro tab review Start-->
+<div class="single-pro-review-area mt-t-30 mg-b-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="profile-info-inner">
+                    <div class="profile-img">
+                        <video  controls width="500">
+                            <source src="{{reproducao.recurso.ficheiro.url}}" type="video/mp4">
+                        </video>
+                    </div>
+                    <div>
+                        <a href="{% url 'formacoes.add' formacao%}">Adicionar Recursos </a>
+                              
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
+                    <ul id="myTabedu1" class="tab-review-design">
+                        <li class="active"><a href="#description">Aulas</a></li>
+                        <li><a href="#reviews"> Materias de Apoio</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content custom-product-edit">
+                        <div class="product-tab-list tab-pane fade active in" id="description">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-content-section">
+                                        <div class="chat-discussion" style="height: auto">
+                                            {% for a in materiais %}
+                                            <div class="chat-message">
+                                                <div class="profile-hdtc">
+                                                    <video  controls width="50">
+                                                        <source src="{{a.recurso.ficheiro.url}}" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                                
+                                                <div class="message">
+                                                    <a class="message-author" href="{% url 'formacoes.detalhes' formacao a.id%}"> {{a.recurso.titulo}} </a>
+                                                    <span class="message-date"> {{a.recurso.created_at}} </span>
+                                                    <span class="message-content">{{a.descricao}}
+                                                    </span>
+                                                    <div class="m-t-md mg-t-10">
+                                                        <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>
+                                                        <a class="btn btn-xs btn-success"><i class="fa fa-heart"></i> Love</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-tab-list tab-pane fade" id="reviews">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-content-section">
+                                        <div class="chat-discussion" style="height: auto">
+                                            <div class="chat-message">
+                                                <div class="profile-hdtc">
+                                                     <img class="message-avatar" src="img/contact/1.jpg" alt="">
+                                                </div>
+                                                <div class="message">
+                                                    <a class="message-author" href="#"> Michael Smith </a>
+                                                    <span class="message-date"> Mon Jan 26 2015 - 18:39:23 </span>
+                                                    <span class="message-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                    </span>
+                                                    <div class="m-t-md mg-t-10">
+                                                        <a class="btn btn-xs btn-default"><i class="fa fa-thumbs-up"></i> Like </a>
+                                                        <a class="btn btn-xs btn-success"><i class="fa fa-heart"></i> Love</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}
